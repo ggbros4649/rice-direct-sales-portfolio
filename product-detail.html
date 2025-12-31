@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" id="meta-description" content="○○農園の商品詳細ページ。こだわりのお米の詳しい情報をご覧いただけます。">
+    <meta name="keywords" content="お米,産地直送,商品詳細">
+
+    <!-- OGP -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" id="og-title" content="商品詳細 - ○○農園">
+    <meta property="og:description" id="og-description" content="○○農園の商品詳細ページ">
+    <meta property="og:image" id="og-image" content="">
+    <meta property="og:url" id="og-url" content="">
+
+    <title id="page-title">商品詳細 - ○○農園</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <h1 class="logo">
+                    <a href="index.html">○○農園</a>
+                </h1>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html">ホーム</a></li>
+                        <li class="nav-item"><a href="products.html">商品一覧</a></li>
+                        <li class="nav-item"><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- パンくずリスト -->
+        <div class="breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="index.html">ホーム</a></li>
+                    <li class="breadcrumb-item"><a href="products.html">商品一覧</a></li>
+                    <li class="breadcrumb-item" id="breadcrumb-product">商品詳細</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 商品詳細セクション -->
+        <section class="product-detail-page">
+            <div class="container">
+                <div id="product-detail-container">
+                    <!-- 商品が見つからない場合 -->
+                    <div id="product-not-found" class="product-not-found" style="display: none;">
+                        <h2>商品が見つかりませんでした</h2>
+                        <p>お探しの商品は存在しないか、現在取り扱っておりません。</p>
+                        <a href="products.html" class="btn btn-primary">商品一覧に戻る</a>
+                    </div>
+
+                    <!-- 商品詳細コンテンツ（JavaScriptで動的に生成） -->
+                    <div id="product-detail-content" style="display: none;">
+                        <div class="product-detail-main">
+                            <!-- 左側：画像 -->
+                            <div class="product-detail-images">
+                                <div class="product-main-image">
+                                    <img id="main-product-image" src="" alt="">
+                                </div>
+                                <div class="product-thumbnails" id="product-thumbnails">
+                                    <!-- サムネイル画像（複数ある場合） -->
+                                </div>
+                            </div>
+
+                            <!-- 右側：商品情報 -->
+                            <div class="product-detail-info">
+                                <div id="product-tags" class="product-tags">
+                                    <!-- タグ -->
+                                </div>
+
+                                <h1 id="product-name" class="product-detail-name"></h1>
+
+                                <div class="product-detail-price-section">
+                                    <p class="product-detail-price">
+                                        <span id="product-price"></span>円
+                                        <span class="price-unit" id="product-size"></span>
+                                    </p>
+                                    <p class="product-stock-info" id="product-stock-info"></p>
+                                </div>
+
+                                <div class="product-shipping-info">
+                                    <p id="product-shipping-note"></p>
+                                </div>
+
+                                <div class="product-description-short">
+                                    <p id="product-description"></p>
+                                </div>
+
+                                <!-- 購入ボタン -->
+                                <div class="product-actions">
+                                    <a href="#" id="buy-now-btn" class="btn btn-primary btn-large btn-full">購入へ進む</a>
+                                </div>
+
+                                <!-- 外部サイト購入リンク -->
+                                <div class="external-purchase-section">
+                                    <p class="external-purchase-label">他のサイトでも購入できます：</p>
+                                    <div class="external-purchase-buttons">
+                                        <a href="#" id="yahoo-auction-btn" class="btn btn-external btn-yahoo" target="_blank" rel="noopener noreferrer">
+                                            <span class="external-icon">🛒</span>
+                                            ヤフオクで購入
+                                        </a>
+                                        <a href="#" id="amazon-btn" class="btn btn-external btn-amazon" target="_blank" rel="noopener noreferrer">
+                                            <span class="external-icon">📦</span>
+                                            Amazonで購入
+                                        </a>
+                                    </div>
+                                    <p class="external-purchase-note">※外部サイトへ移動します（デモ用ダミーリンク）</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 商品詳細説明 -->
+                        <div class="product-detail-description">
+                            <h2 class="section-subtitle">商品について</h2>
+                            <p id="product-detailed-description"></p>
+                        </div>
+
+                        <!-- 商品特徴 -->
+                        <div class="product-features-section">
+                            <h2 class="section-subtitle">この商品の特徴</h2>
+                            <ul id="product-features-list" class="features-list">
+                                <!-- 特徴リスト -->
+                            </ul>
+                        </div>
+
+                        <!-- 炊き方のコツ -->
+                        <div class="product-cooking-tips">
+                            <h2 class="section-subtitle">美味しい炊き方のコツ</h2>
+                            <p id="product-cooking-tips"></p>
+                        </div>
+
+                        <!-- 関連商品（同じ銘柄の別サイズ） -->
+                        <div class="related-products-section">
+                            <h2 class="section-subtitle">関連商品</h2>
+                            <div id="related-products" class="related-products-grid">
+                                <!-- 関連商品カード -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTAセクション -->
+        <section class="cta">
+            <div class="container">
+                <h2 class="cta-title">お問い合わせ</h2>
+                <p class="cta-text">
+                    商品に関するご質問は、お気軽にお問い合わせください。
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-outline">お問い合わせ</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">○○農園</h3>
+                    <p class="footer-text">
+                        〒000-0000<br>
+                        ○○県○○市○○町1-2-3<br>
+                        TEL: 000-0000-0000<br>
+                        営業時間: 9:00〜18:00（土日祝休み）
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">サイトマップ</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="products.html">商品一覧</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">お支払い・配送について</h4>
+                    <p class="footer-text footer-text-small">
+                        お支払い方法：銀行振込、代金引換<br>
+                        配送方法：ヤマト運輸、佐川急便<br>
+                        送料：全国一律800円（1万円以上で無料）
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 ○○農園 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data/products.js"></script>
+    <script src="js/product-detail.js"></script>
+</body>
+</html>

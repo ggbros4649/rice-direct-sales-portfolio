@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="○○農園の商品一覧。コシヒカリ、あきたこまち、つや姫など、こだわりのお米を各種取り揃えています。">
+    <meta name="keywords" content="お米,産地直送,商品一覧,コシヒカリ,つや姫,ひとめぼれ,ササニシキ">
+    <title>商品一覧 - ○○農園｜米 直販</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <h1 class="logo">
+                    <a href="index.html">○○農園</a>
+                </h1>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html">ホーム</a></li>
+                        <li class="nav-item"><a href="products.html" class="active">商品一覧</a></li>
+                        <li class="nav-item"><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- パンくずリスト -->
+        <div class="breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="index.html">ホーム</a></li>
+                    <li class="breadcrumb-item">商品一覧</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 商品一覧セクション -->
+        <section class="products-page">
+            <div class="container">
+                <h1 class="page-title">商品一覧</h1>
+                <p class="page-description">
+                    ○○農園で育てたこだわりのお米を各種取り揃えています。<br>
+                    お好みの銘柄・容量をお選びください。
+                </p>
+
+                <!-- 絞り込み・並び替えコントロール -->
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="filter-variety" class="filter-label">銘柄：</label>
+                        <select id="filter-variety" class="filter-select">
+                            <option value="all">すべて</option>
+                            <option value="koshihikari">コシヒカリ</option>
+                            <option value="akitakomachi">あきたこまち</option>
+                            <option value="tsuyahime">つや姫</option>
+                            <option value="hitomebore">ひとめぼれ</option>
+                            <option value="sasanishiki">ササニシキ</option>
+                            <option value="genmai">玄米</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-weight" class="filter-label">容量：</label>
+                        <select id="filter-weight" class="filter-select">
+                            <option value="all">すべて</option>
+                            <option value="5kg">5kg</option>
+                            <option value="10kg">10kg</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-stock" class="filter-label">在庫：</label>
+                        <select id="filter-stock" class="filter-select">
+                            <option value="all">すべて</option>
+                            <option value="available">在庫あり</option>
+                            <option value="limited">残りわずか</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sort-order" class="filter-label">並び替え：</label>
+                        <select id="sort-order" class="filter-select">
+                            <option value="popular">人気順</option>
+                            <option value="price-asc">価格が安い順</option>
+                            <option value="price-desc">価格が高い順</option>
+                        </select>
+                    </div>
+
+                    <button id="reset-filters" class="btn btn-outline btn-small">リセット</button>
+                </div>
+
+                <!-- 商品件数表示 -->
+                <div class="product-count">
+                    <p><span id="product-count-number">6</span>件の商品が見つかりました</p>
+                </div>
+
+                <!-- 商品グリッド（JavaScriptで動的に生成） -->
+                <div id="products-grid" class="products-grid">
+                    <!-- 商品カードはJavaScriptで動的に生成されます -->
+                </div>
+
+                <!-- 検索結果なしメッセージ -->
+                <div id="no-results" class="no-results" style="display: none;">
+                    <p>条件に一致する商品が見つかりませんでした。</p>
+                    <button id="reset-from-no-results" class="btn btn-primary">絞り込みをリセット</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTAセクション -->
+        <section class="cta">
+            <div class="container">
+                <h2 class="cta-title">お問い合わせ</h2>
+                <p class="cta-text">
+                    商品に関するご質問やご注文は、お気軽にお問い合わせください。
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-outline">お問い合わせ</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">○○農園</h3>
+                    <p class="footer-text">
+                        〒000-0000<br>
+                        ○○県○○市○○町1-2-3<br>
+                        TEL: 000-0000-0000<br>
+                        営業時間: 9:00〜18:00（土日祝休み）
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">サイトマップ</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="products.html">商品一覧</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">お支払い・配送について</h4>
+                    <p class="footer-text footer-text-small">
+                        お支払い方法：銀行振込、代金引換<br>
+                        配送方法：ヤマト運輸、佐川急便<br>
+                        送料：全国一律800円（1万円以上で無料）
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 ○○農園 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data/products.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

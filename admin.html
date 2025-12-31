@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>注文管理 - ○○農園 管理画面</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-header-inner">
+                <h1 class="admin-logo">○○農園 管理画面</h1>
+                <nav class="admin-nav">
+                    <a href="products.html" class="admin-nav-link">商品一覧</a>
+                    <a href="index.html" class="admin-nav-link">サイトに戻る</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="admin-main">
+        <div class="container">
+            <!-- デモ用注意書き -->
+            <div class="admin-warning">
+                <p>⚠️ <strong>デモ用管理画面</strong> - このページは実演用です。実運用にはバックエンドAPI、認証システム、データベースが必要です。</p>
+                <p>現在の注文データはブラウザのlocalStorageに保存されています。</p>
+            </div>
+
+            <div class="admin-header-section">
+                <h2 class="admin-page-title">注文管理</h2>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">総注文数</div>
+                        <div class="stat-value" id="total-orders">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">注文受付</div>
+                        <div class="stat-value" id="pending-orders">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">発送準備中</div>
+                        <div class="stat-value" id="preparing-orders">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">発送済み</div>
+                        <div class="stat-value" id="shipped-orders">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">キャンセル</div>
+                        <div class="stat-value" id="cancelled-orders">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 検索・フィルター -->
+            <div class="admin-filter">
+                <div class="filter-group">
+                    <label for="search-input">検索：</label>
+                    <input type="text" id="search-input" class="admin-input" placeholder="注文番号 or 顧客名">
+                </div>
+
+                <div class="filter-group">
+                    <label for="status-filter">ステータス絞り込み：</label>
+                    <select id="status-filter" class="admin-select">
+                        <option value="all">すべて</option>
+                        <option value="注文受付">注文受付</option>
+                        <option value="発送準備中">発送準備中</option>
+                        <option value="発送済み">発送済み</option>
+                        <option value="キャンセル">キャンセル</option>
+                    </select>
+                </div>
+
+                <button id="clear-all-orders" class="btn btn-outline btn-small" style="margin-left: auto;">すべての注文をクリア</button>
+            </div>
+
+            <!-- 注文一覧テーブル -->
+            <div class="admin-table-container">
+                <table class="admin-table" id="orders-table">
+                    <thead>
+                        <tr>
+                            <th>注文番号</th>
+                            <th>注文日時</th>
+                            <th>商品名</th>
+                            <th>数量</th>
+                            <th>顧客名</th>
+                            <th>合計金額</th>
+                            <th>ステータス</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-tbody">
+                        <!-- 注文データ（JavaScriptで生成） -->
+                    </tbody>
+                </table>
+
+                <div id="no-orders-message" class="no-data-message" style="display: none;">
+                    <p>注文データがありません。</p>
+                    <p><a href="products.html" class="link-primary">商品一覧ページ</a>から注文を作成してください。</p>
+                </div>
+            </div>
+
+            <!-- お問い合わせ管理 -->
+            <div class="admin-section-divider"></div>
+
+            <div class="admin-header-section">
+                <h2 class="admin-page-title">お問い合わせ管理</h2>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">総件数</div>
+                        <div class="stat-value" id="total-contacts">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">未対応</div>
+                        <div class="stat-value" id="pending-contacts">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">対応済み</div>
+                        <div class="stat-value" id="responded-contacts">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- お問い合わせ検索・フィルター -->
+            <div class="admin-filter">
+                <div class="filter-group">
+                    <label for="contact-search-input">検索：</label>
+                    <input type="text" id="contact-search-input" class="admin-input" placeholder="名前 or メール">
+                </div>
+
+                <div class="filter-group">
+                    <label for="contact-status-filter">ステータス絞り込み：</label>
+                    <select id="contact-status-filter" class="admin-select">
+                        <option value="all">すべて</option>
+                        <option value="未対応">未対応</option>
+                        <option value="対応済み">対応済み</option>
+                    </select>
+                </div>
+
+                <button id="clear-all-contacts" class="btn btn-outline btn-small" style="margin-left: auto;">すべてのお問い合わせをクリア</button>
+            </div>
+
+            <!-- お問い合わせ一覧テーブル -->
+            <div class="admin-table-container">
+                <table class="admin-table" id="contacts-table">
+                    <thead>
+                        <tr>
+                            <th>お問い合わせ番号</th>
+                            <th>受付日時</th>
+                            <th>お名前</th>
+                            <th>メールアドレス</th>
+                            <th>種別</th>
+                            <th>ステータス</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contacts-tbody">
+                        <!-- お問い合わせデータ（JavaScriptで生成） -->
+                    </tbody>
+                </table>
+
+                <div id="no-contacts-message" class="no-data-message" style="display: none;">
+                    <p>お問い合わせデータがありません。</p>
+                    <p><a href="contact.html" class="link-primary">お問い合わせページ</a>からお問い合わせを作成してください。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 注文詳細モーダル -->
+    <div id="order-detail-modal" class="modal" style="display: none;">
+        <div class="modal-content modal-large">
+            <h2 class="modal-title">注文詳細</h2>
+            <button id="close-modal" class="modal-close">&times;</button>
+
+            <div id="order-detail-content">
+                <!-- 注文詳細（JavaScriptで生成） -->
+            </div>
+
+            <div class="modal-actions">
+                <button id="close-detail-btn" class="btn btn-outline">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- お問い合わせ詳細モーダル -->
+    <div id="contact-detail-modal" class="modal" style="display: none;">
+        <div class="modal-content modal-large">
+            <h2 class="modal-title">お問い合わせ詳細</h2>
+            <button id="close-contact-modal" class="modal-close">&times;</button>
+
+            <div id="contact-detail-content">
+                <!-- お問い合わせ詳細（JavaScriptで生成） -->
+            </div>
+
+            <div class="modal-actions">
+                <button id="close-contact-detail-btn" class="btn btn-outline">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data/products.js"></script>
+    <script src="js/order.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

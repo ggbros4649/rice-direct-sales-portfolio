@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="○○農園のご注文ページ。安心・安全な決済システムでお買い物いただけます。">
+    <meta name="keywords" content="お米,産地直送,注文,購入">
+    <title>ご注文 - ○○農園</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <h1 class="logo">
+                    <a href="index.html">○○農園</a>
+                </h1>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html">ホーム</a></li>
+                        <li class="nav-item"><a href="products.html">商品一覧</a></li>
+                        <li class="nav-item"><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- パンくずリスト -->
+        <div class="breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="index.html">ホーム</a></li>
+                    <li class="breadcrumb-item"><a href="products.html">商品一覧</a></li>
+                    <li class="breadcrumb-item">ご注文</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 注文ページ -->
+        <section class="order-page">
+            <div class="container">
+                <h1 class="page-title">ご注文</h1>
+
+                <div class="order-container">
+                    <!-- 注文フォーム -->
+                    <div class="order-form-section">
+                        <form id="order-form">
+                            <!-- 注文商品 -->
+                            <div class="form-section">
+                                <h2 class="form-section-title">注文内容</h2>
+                                <div id="order-product-info" class="order-product-info">
+                                    <!-- 商品情報（JavaScriptで生成） -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quantity" class="form-label">数量：</label>
+                                    <div class="quantity-selector">
+                                        <button type="button" id="decrease-qty" class="qty-btn">−</button>
+                                        <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="qty-input" required>
+                                        <button type="button" id="increase-qty" class="qty-btn">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- お客様情報 -->
+                            <div class="form-section">
+                                <h2 class="form-section-title">お客様情報</h2>
+
+                                <div class="form-group">
+                                    <label for="customer-name" class="form-label">お名前 <span class="required">必須</span></label>
+                                    <input type="text" id="customer-name" name="customer-name" class="form-input" required placeholder="山田 太郎">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer-email" class="form-label">メールアドレス <span class="required">必須</span></label>
+                                    <input type="email" id="customer-email" name="customer-email" class="form-input" required placeholder="example@example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer-phone" class="form-label">電話番号 <span class="required">必須</span></label>
+                                    <input type="tel" id="customer-phone" name="customer-phone" class="form-input" required placeholder="090-1234-5678">
+                                </div>
+                            </div>
+
+                            <!-- 配送先情報 -->
+                            <div class="form-section">
+                                <h2 class="form-section-title">配送先情報</h2>
+
+                                <div class="form-group">
+                                    <label for="postal-code" class="form-label">郵便番号 <span class="required">必須</span></label>
+                                    <input type="text" id="postal-code" name="postal-code" class="form-input" required placeholder="123-4567">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address" class="form-label">住所 <span class="required">必須</span></label>
+                                    <input type="text" id="address" name="address" class="form-input" required placeholder="東京都〇〇区〇〇町1-2-3">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="delivery-date" class="form-label">配送希望日（任意）</label>
+                                    <input type="date" id="delivery-date" name="delivery-date" class="form-input" min="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="delivery-note" class="form-label">配送に関する備考（任意）</label>
+                                    <textarea id="delivery-note" name="delivery-note" class="form-textarea" rows="3" placeholder="配送時間の指定など"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- 支払い方法 -->
+                            <div class="form-section">
+                                <h2 class="form-section-title">お支払い方法</h2>
+
+                                <div class="payment-methods">
+                                    <label class="payment-method">
+                                        <input type="radio" name="payment-method" value="credit-card" checked>
+                                        <span class="payment-label">クレジットカード</span>
+                                        <p class="payment-description">※デモ用のため、実際の決済は行われません。</p>
+                                    </label>
+
+                                    <label class="payment-method">
+                                        <input type="radio" name="payment-method" value="cash-on-delivery">
+                                        <span class="payment-label">現金（代金引換）</span>
+                                        <p class="payment-description">商品受け取り時に配送業者にお支払いください。</p>
+                                    </label>
+
+                                    <label class="payment-method">
+                                        <input type="radio" name="payment-method" value="qr-payment">
+                                        <span class="payment-label">QR決済（PayPay想定）</span>
+                                        <p class="payment-description">※デモ用のため、実際の決済は行われません。</p>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 注文確認ボタン -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-large btn-full">注文を確定する</button>
+                                <a href="products.html" class="btn btn-outline">商品一覧に戻る</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 注文サマリー -->
+                    <div class="order-summary">
+                        <h2 class="summary-title">ご注文内容</h2>
+
+                        <div class="summary-item">
+                            <span class="summary-label">商品名：</span>
+                            <span id="summary-product-name" class="summary-value"></span>
+                        </div>
+
+                        <div class="summary-item">
+                            <span class="summary-label">単価：</span>
+                            <span id="summary-unit-price" class="summary-value"></span>
+                        </div>
+
+                        <div class="summary-item">
+                            <span class="summary-label">数量：</span>
+                            <span id="summary-quantity" class="summary-value">1</span>
+                        </div>
+
+                        <div class="summary-item">
+                            <span class="summary-label">小計：</span>
+                            <span id="summary-subtotal" class="summary-value"></span>
+                        </div>
+
+                        <div class="summary-item">
+                            <span class="summary-label">送料：</span>
+                            <span id="summary-shipping" class="summary-value">800円</span>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-item summary-total">
+                            <span class="summary-label">合計金額：</span>
+                            <span id="summary-total" class="summary-value"></span>
+                        </div>
+
+                        <div class="summary-note">
+                            <p>※1万円以上のご注文で送料無料</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 注文完了モーダル -->
+        <div id="order-complete-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2 class="modal-title">ご注文ありがとうございます</h2>
+
+                <div class="order-complete-info">
+                    <div class="order-info-item">
+                        <span class="info-label">注文番号：</span>
+                        <strong id="order-number" class="info-value"></strong>
+                    </div>
+
+                    <div class="order-info-item">
+                        <span class="info-label">現在のステータス：</span>
+                        <span class="info-value status-badge">注文受付</span>
+                    </div>
+                </div>
+
+                <div class="order-complete-flow">
+                    <h3 class="flow-title">今後の流れ</h3>
+                    <ol class="flow-steps">
+                        <li class="flow-step active">
+                            <strong>注文受付</strong>
+                            <p>ご注文を承りました。確認メールを送信いたしました。</p>
+                        </li>
+                        <li class="flow-step">
+                            <strong>発送準備中</strong>
+                            <p>商品の準備が整い次第、発送作業に入ります。</p>
+                        </li>
+                        <li class="flow-step">
+                            <strong>発送済み</strong>
+                            <p>商品が発送され、お手元に届きます。</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="order-complete-note">
+                    <p>※デモ版のため、実際にはメールは送信されません。</p>
+                    <p>注文のステータスは<a href="admin.html" class="link-admin">管理画面</a>で更新・確認できます。</p>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="index.html" class="btn btn-primary">トップページへ</a>
+                    <a href="products.html" class="btn btn-outline">商品一覧へ</a>
+                    <a href="admin.html" class="btn btn-secondary">管理画面を見る</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">○○農園</h3>
+                    <p class="footer-text">
+                        〒000-0000<br>
+                        ○○県○○市○○町1-2-3<br>
+                        TEL: 000-0000-0000<br>
+                        営業時間: 9:00〜18:00（土日祝休み）
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">サイトマップ</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="products.html">商品一覧</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">お支払い・配送について</h4>
+                    <p class="footer-text footer-text-small">
+                        お支払い方法：銀行振込、代金引換<br>
+                        配送方法：ヤマト運輸、佐川急便<br>
+                        送料：全国一律800円（1万円以上で無料）
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 ○○農園 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data/products.js"></script>
+    <script src="js/order.js"></script>
+</body>
+</html>
